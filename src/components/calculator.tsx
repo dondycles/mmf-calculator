@@ -43,16 +43,16 @@ export default function Calculator() {
   }, [currentNetProfit]);
 
   return (
-    <FieldSet className="w-fit mx-auto">
+    <FieldSet>
       <FieldLegend>mymusic5 Profit Calculator</FieldLegend>
       <FieldDescription>
         Calculates your projected profit this month minus the sales tax.
       </FieldDescription>
-      <div className="shadow-xs flex flex-col gap-2 bg-orange-500/10 p-4 rounded-lg border">
+      <div className="shadow-xs flex flex-col gap-2 bg-yellow-500/10 p-4 rounded-lg border">
         <span className="text-muted-foreground">
           Your profit minus tax will be:
         </span>
-        <span className="font-semibold text-4xl text-orange-500  w-fit ml-auto mr-0">
+        <span className="font-semibold text-4xl text-yellow-500  w-fit ml-auto mr-0">
           {" "}
           {formatter.format(result)}
         </span>

@@ -1,6 +1,8 @@
 ---
 import "../styles/global.css";
 import Calculator from "@/components/calculator";
+import { Image } from "astro:assets";
+import mm5 from "@/../public/mm5.webp";
 ---
 
 <html lang="en">
@@ -16,7 +18,8 @@ import Calculator from "@/components/calculator";
     />
   </head>
   <body>
-    <div class="grid min-h-screen p-4">
+    <div class="min-h-screen p-4 flex flex-col items-center gap-4">
+      <Image class="size-32 aspect-auto" alt="mm5" src={mm5} />
       <Calculator client:load />
     </div>
   </body>
