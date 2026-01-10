@@ -64,7 +64,7 @@ export default function Calculator() {
         profit.
       </FieldDescription>
       <img src="https://latex.codecogs.com/png.image?\dpi{110}\left(\frac{\textbf{number&space;of&space;days&space;this&space;month}}{\textbf{current&space;day}}*\textbf{current&space;net&space;profit}\right)-\textbf{tax}" />
-      <div className="shadow-xs flex flex-col gap-8 bg-yellow-500/10 p-4 rounded-lg border">
+      <div className="shadow-xs flex flex-col gap-4 bg-yellow-500/10 p-4 rounded-lg border">
         <div className="flex justify-between gap-4 items-center [&>button>button]:bg-white">
           <span className="text-muted-foreground">
             Projected profit minus tax:
@@ -80,34 +80,11 @@ export default function Calculator() {
             name="currency"
           />
         </div>
-        <span className="font-semibold text-4xl text-yellow-500  w-fit ml-auto mr-0">
+        <span className="font-semibold text-3xl text-yellow-500  w-fit ml-auto mr-0">
           {formatter.format(result)}
         </span>
       </div>
       <FieldGroup>
-        <Field>
-          <FieldLabel htmlFor="currentNetProfit">Tax Percentage</FieldLabel>
-          <div className="relative">
-            <Percent className="-translate-y-1/2 absolute top-1/2 left-3 h-4 w-4 text-muted-foreground" />
-            <Input
-              className="pl-8"
-              placeholder="20%"
-              step="0.01"
-              min={0}
-              type="number"
-              id="currentNetProfit"
-              autoComplete="off"
-              value={String(tax).replace(/^0+/, "")}
-              onChange={(e) => {
-                const val = e.currentTarget.value;
-                setTax(Number(val));
-              }}
-            />
-          </div>
-          <FieldDescription>
-            This differs from country to country.
-          </FieldDescription>
-        </Field>
         <Field>
           <FieldLabel htmlFor="currentNetProfit">
             Current Net Profit in USD
@@ -132,6 +109,29 @@ export default function Calculator() {
             />
           </div>
           <FieldDescription>This appears on your dashboard.</FieldDescription>
+        </Field>
+        <Field>
+          <FieldLabel htmlFor="currentNetProfit">Tax Percentage</FieldLabel>
+          <div className="relative">
+            <Percent className="-translate-y-1/2 absolute top-1/2 left-3 h-4 w-4 text-muted-foreground" />
+            <Input
+              className="pl-8"
+              placeholder="20%"
+              step="0.01"
+              min={0}
+              type="number"
+              id="currentNetProfit"
+              autoComplete="off"
+              value={String(tax).replace(/^0+/, "")}
+              onChange={(e) => {
+                const val = e.currentTarget.value;
+                setTax(Number(val));
+              }}
+            />
+          </div>
+          <FieldDescription>
+            This differs from country to country.
+          </FieldDescription>
         </Field>
       </FieldGroup>
     </FieldSet>
