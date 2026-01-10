@@ -7,7 +7,7 @@ import {
   FieldSet,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { DollarSign, Percent } from "lucide-react";
 import { getDaysInMonth, getDate } from "date-fns";
 import { CurrencySelect } from "./currency-select";

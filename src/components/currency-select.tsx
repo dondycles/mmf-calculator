@@ -6,14 +6,6 @@ import { cn } from "@/lib/utils";
 import { currencies as AllCurrencies } from "country-data-list";
 
 // shadcn
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 
 // radix-ui
 import type { SelectProps } from "@radix-ui/react-select";
