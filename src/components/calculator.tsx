@@ -8,12 +8,12 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { useEffect, useState } from "react";
-import { DollarSign, Percent } from "lucide-react";
+import { Percent } from "lucide-react";
 import { getDaysInMonth, getDate } from "date-fns";
 import { CurrencySelect } from "./currency-select";
 export default function Calculator() {
   const [tax, setTax] = useState<number>(20);
-  const [currency, setCurrency] = useState<string>("PHP");
+  const [currency, setCurrency] = useState<string>("EUR");
   const [currentNetProfit, setCurrentNetProfit] = useState<
     number | undefined
   >();
@@ -21,8 +21,6 @@ export default function Calculator() {
   const formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency,
-    // Optional: hides cents if they are .00
-    // minimumFractionDigits: 0,
   });
 
   async function convert(to: string, amount: number) {
@@ -54,8 +52,8 @@ export default function Calculator() {
       }
     };
 
-    // 3. Execute it
     calculateResult();
+    console.log(`${currency}, ${tax}, ${currentNetProfit}`);
   }, [currentNetProfit, tax, currency]);
 
   return (
@@ -72,17 +70,17 @@ export default function Calculator() {
             Projected profit minus tax:
           </span>
           <CurrencySelect
+            onCurrencySelect={(c) => setCurrency(c.code)}
             onValueChange={setCurrency}
             value={currency}
             placeholder="Currency"
             disabled={false}
-            currencies="all"
+            currencies="custom"
             variant="small"
             name="currency"
           />
         </div>
         <span className="font-semibold text-4xl text-yellow-500  w-fit ml-auto mr-0">
-          {" "}
           {formatter.format(result)}
         </span>
       </div>
@@ -115,10 +113,11 @@ export default function Calculator() {
             Current Net Profit in USD
           </FieldLabel>
           <div className="relative">
-            <DollarSign className="-translate-y-1/2 absolute top-1/2 left-3 h-4 w-4 text-muted-foreground" />
-
+            <span className="absolute -translate-y-1/2 top-1/2 left-3 text-muted-foreground text-sm font-semibold">
+              {currency}
+            </span>
             <Input
-              className="pl-8"
+              className="pl-12"
               placeholder="0.00"
               step="0.01"
               min={0}
