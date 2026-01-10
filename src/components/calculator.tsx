@@ -13,7 +13,7 @@ import { getDaysInMonth, getDate } from "date-fns";
 import { CurrencySelect } from "./currency-select";
 export default function Calculator() {
   const [tax, setTax] = useState<number>(20);
-  const [currency, setCurrency] = useState<string>("EUR");
+  const [currency, setCurrency] = useState<string>("PHP");
   const [currentNetProfit, setCurrentNetProfit] = useState<
     number | undefined
   >();
