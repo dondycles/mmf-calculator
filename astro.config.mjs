@@ -9,8 +9,12 @@ import react from "@astrojs/react";
 export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      rollupOptions: {
+        external: [],
+      },
+    },
   },
-
   integrations: [react()],
   adapter: vercel(),
 });
