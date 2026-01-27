@@ -91,7 +91,7 @@ export default function Calculator() {
           </FieldLabel>
           <div className="relative">
             <span className="absolute -translate-y-1/2 top-1/2 left-3 text-muted-foreground text-sm font-semibold">
-              {currency}
+              USD
             </span>
             <Input
               className="pl-12"
