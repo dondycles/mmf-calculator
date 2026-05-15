@@ -64,8 +64,7 @@ const [localTax, setLocalTax] = useState<number>(8);
         Calculates your projected profit of this month based on your current
         profit.
       </FieldDescription>
-      <img src="https://latex.codecogs.com/png.image?\dpi{110}\left(\frac{\textbf{number&space;of&space;days&space;this&space;month}}{\textbf{current&space;day}}*\textbf{current&space;net&space;profit}\right)-\textbf{tax}" />
-      <div className="shadow-xs flex flex-col gap-4 bg-yellow-500/10 p-4 rounded-lg border">
+ <div className="shadow-xs flex flex-col gap-4 bg-yellow-500/10 p-4 rounded-lg border">
         <div className="flex justify-between gap-4 items-center [&>button>button]:bg-white">
           <span className="text-muted-foreground">
             Projected profit minus tax:
@@ -158,6 +157,8 @@ const [localTax, setLocalTax] = useState<number>(8);
           </FieldDescription>
         </Field>
       </FieldGroup>
+     <img src="https://latex.codecogs.com/png.image?\dpi{110}\left(\frac{\textbf{number&space;of&space;days&space;this&space;month}}{\textbf{current&space;day}}*\textbf{current&space;net&space;profit}\right)-\textbf{tax}" />
+      
     </FieldSet>
   );
 }
