@@ -12,7 +12,8 @@ import { Percent } from "lucide-react";
 import { getDaysInMonth, getDate } from "date-fns";
 import { CurrencySelect } from "./currency-select";
 export default function Calculator() {
-  const [tax, setTax] = useState<number>(16.5);
+const [localTax, setLocalTax] = useState<number>(8);
+  const [foreignTax, setForeignTax] = useState<number>(16.5);
   const [currency, setCurrency] = useState<string>("PHP");
   const [currentNetProfit, setCurrentNetProfit] = useState<
     number | undefined
@@ -39,7 +40,7 @@ export default function Calculator() {
         const rawValue =
           (getDaysInMonth(new Date()) / getDate(new Date())) *
           Number(currentNetProfit) *
-          (1 - tax / 100);
+          (1 - foreignTax / 100);
 
         const convertedValue = await convert(
           currency,
@@ -53,8 +54,8 @@ export default function Calculator() {
     };
 
     calculateResult();
-    console.log(`${currency}, ${tax}, ${currentNetProfit}`);
-  }, [currentNetProfit, tax, currency]);
+    
+  }, [currentNetProfit, foreignTax, localTax, currency]);
 
   return (
     <FieldSet className="max-w-sm w-full">
@@ -111,7 +112,7 @@ export default function Calculator() {
           <FieldDescription>This appears on your dashboard.</FieldDescription>
         </Field>
         <Field>
-          <FieldLabel htmlFor="currentNetProfit">Tax Percentage</FieldLabel>
+          <FieldLabel htmlFor="foreignTax">Foreign Tax Percentage</FieldLabel>
           <div className="relative">
             <Percent className="-translate-y-1/2 absolute top-1/2 left-3 h-4 w-4 text-muted-foreground" />
             <Input
@@ -120,17 +121,40 @@ export default function Calculator() {
               step="0.01"
               min={0}
               type="number"
-              id="currentNetProfit"
+              id="foreignTax"
               autoComplete="off"
-              value={String(tax).replace(/^0+/, "")}
+              value={String(foreignTax).replace(/^0+/, "")}
               onChange={(e) => {
                 const val = e.currentTarget.value;
-                setTax(Number(val));
+                setForeignTax(Number(val));
               }}
             />
           </div>
           <FieldDescription>
             This differs from country to country.
+          </FieldDescription>
+        </Field>
+<Field>
+          <FieldLabel htmlFor="localTax">Local Tax Percentage</FieldLabel>
+          <div className="relative">
+            <Percent className="-translate-y-1/2 absolute top-1/2 left-3 h-4 w-4 text-muted-foreground" />
+            <Input
+              className="pl-8"
+              placeholder="8%"
+              step="0.01"
+              min={0}
+              type="number"
+              id="localTax"
+              autoComplete="off"
+              value={String(localTax).replace(/^0+/, "")}
+              onChange={(e) => {
+                const val = e.currentTarget.value;
+                setLocalTax(Number(val));
+              }}
+            />
+          </div>
+          <FieldDescription>
+            This is based on your tax profile.
           </FieldDescription>
         </Field>
       </FieldGroup>
