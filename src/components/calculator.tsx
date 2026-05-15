@@ -12,7 +12,7 @@ import { Percent } from "lucide-react";
 import { getDaysInMonth, getDate } from "date-fns";
 import { CurrencySelect } from "./currency-select";
 export default function Calculator() {
-  const [tax, setTax] = useState<number>(20);
+  const [tax, setTax] = useState<number>(16.5);
   const [currency, setCurrency] = useState<string>("PHP");
   const [currentNetProfit, setCurrentNetProfit] = useState<
     number | undefined
@@ -116,7 +116,7 @@ export default function Calculator() {
             <Percent className="-translate-y-1/2 absolute top-1/2 left-3 h-4 w-4 text-muted-foreground" />
             <Input
               className="pl-8"
-              placeholder="20%"
+              placeholder="16.5%"
               step="0.01"
               min={0}
               type="number"
