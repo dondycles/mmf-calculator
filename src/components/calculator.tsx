@@ -40,7 +40,7 @@ const [localTax, setLocalTax] = useState<number>(8);
         const rawValue =
           (getDaysInMonth(new Date()) / getDate(new Date())) *
           Number(currentNetProfit) *
-          (1 - foreignTax / 100);
+          (1 - foreignTax / 100) * (1 - localTax/100);
 
         const convertedValue = await convert(
           currency,
